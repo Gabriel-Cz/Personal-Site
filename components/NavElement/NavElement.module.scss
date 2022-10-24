@@ -1,0 +1,12 @@
+.navElement {
+  font-family: 'Istok Web';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 35px;
+  color: rgba(255, 255, 255, 0.5);
+  
+  &[data-active=true] {
+    color: #FFFFFF;
+  }
+}

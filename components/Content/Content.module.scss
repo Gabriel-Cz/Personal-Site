@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.contentContainer {
+  max-width: 950px;
+  max-width: 350px;
+  text-align: center;
+  font: $content-text;
+  color: $primary--text--color;
+}
