@@ -1,0 +1,141 @@
+$inputFont: 24px, 2px, 'Gilroy-Light', 'sans-serif';
+
+.contactFormWrapper {
+  position: relative;
+
+  .imgEnvelope {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateY(-50%);
+  }
+
+  .contactFormHeader {
+    font-family: 'Gilroy-ExtraBold';
+    width: 100%;
+    padding-bottom: 35px;
+  }
+
+  .contactForm {
+    display: flex;
+    flex-direction: column;
+
+    .fieldsWrapper {
+      position: relative;
+      display: flex;
+
+      input {
+        width: 100%;
+        color: azure;
+        margin-top: 10px;
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        font-family: 'Gilroy-Light', 'sans-serif';
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &[type=text] {
+          margin-top: 10px;
+        }
+
+        &::placeholder {
+          color: rgba($color: #ffff, $alpha: 0.7);
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      textarea {
+        width: 100%;
+        margin-top: 20px;
+        color: azure;
+        background-color: transparent;
+        border: none;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        font-size: 16px;
+        font-family: 'Gilroy-Light', 'sans-serif';
+        resize: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &::placeholder {
+          color: rgba($color: #ffff, $alpha: 0.7);
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    button {
+      margin-top: 3px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      color: azure;
+      text-align: center;
+      font-family: 'Gilroy-ExtraBold';
+      font-style: normal;
+      letter-spacing: 2px;
+      font-size: 20px;
+      padding: 10px 0px;
+      box-shadow: none;
+      border: none;
+      transition: all ease-in-out 0.25s;
+      background: #56CCF2;
+      background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);
+      background: linear-gradient(to right, #2F80ED, #56CCF2);
+      opacity: 0.8;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .errorTooltip {
+    position: absolute;
+    color: rgba($color: whitesmoke, $alpha: 1);
+    text-align: start;
+    font-family: 'Gilroy-Light', 'sans-serif';
+    font-size: 14px;
+    opacity: 0;
+    background-color: rgba($color: rgb(228, 107, 107), $alpha: 1);
+    padding: 0px 15px;
+    border-radius: 5px;
+    bottom: 95%;
+    border: none;
+    animation: textAppear 0.5s ease-in-out forwards;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba($color: rgb(228, 107, 107), $alpha: 1) transparent transparent transparent;
+    }
+  }
+
+  @keyframes textAppear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 100%;
+    }
+  }
+}

@@ -1,12 +1,18 @@
 .navElement {
-  font-family: 'Istok Web';
+  font-family: 'Gilroy-ExtraBold';
   font-style: normal;
   font-weight: 400;
+  letter-spacing: 2px;
   font-size: 24px;
   line-height: 35px;
   color: rgba(255, 255, 255, 0.5);
+  margin: 0px 30px;
   
   &[data-active=true] {
+    color: #FFFFFF;
+  }
+
+  &:hover {
     color: #FFFFFF;
   }
 }
