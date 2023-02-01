@@ -8,7 +8,9 @@ export const Footer: React.FC<
     <footer {...props} className={styles.footer}>
       <div>
         Built by&nbsp;
-        <a href="" target="_blank">Gabriel Cz</a>
+        <a href="" target="_blank" rel="noreferrer">
+          Gabriel Cz
+        </a>
       </div>
       <div>
         Background photo by&nbsp;
