@@ -1,9 +1,8 @@
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 import { Content, Text, Button, Layout } from "@components";
 import { PageProps } from "@types";
 
 export const getServerSideProps = async () => {
-  console.log('Get Server Side');
   const res = await fetch('http://localhost:3000/api/aws?pageName=Experience', {
     method: 'GET',
     headers: {
@@ -11,7 +10,6 @@ export const getServerSideProps = async () => {
     },
   });
   const { data } = await res.json();
-  console.log(data);
   return {
     props: {
       content: data.Item.Content
