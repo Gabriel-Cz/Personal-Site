@@ -3,7 +3,7 @@ import { Content, Text, Button, Layout } from "@components";
 import { PageProps } from "@types";
 
 export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/aws?pageName=Experience', {
+  const res = await fetch(`${process.env.REACT_URL}/api/aws?pageName=Experience`, {
     method: 'GET',
     headers: {
       "Content-type": "application/json",
