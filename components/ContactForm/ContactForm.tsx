@@ -46,7 +46,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           Send Me an Email
         </h1>
         <i className={styles.emailToCopy}>
-          Or contact me directly via
+          Or you can contact me directly via
           <b onClick={onEmailCopy}> gabrielczhz@gmail.com</b>
         </i>
       </div>

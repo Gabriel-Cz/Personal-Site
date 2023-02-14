@@ -38,7 +38,7 @@ const Contact: NextPage<PageProps> = () => {
   });
 
   const onSuccess = () => {
-    toast.success("The email was sent successfully. We'll be in touch in a short.", {
+    toast.success("The email was sent successfully. We'll be in touch in a short time.", {
       theme: 'colored',
       autoClose: 8000,
       pauseOnHover: true,
@@ -102,6 +102,19 @@ const Contact: NextPage<PageProps> = () => {
     )
   };
 
+  const isSendDisabled = () => {
+    if (values.email.length === 0 || values.content.length === 0) {
+      return true;
+    }
+    if (isFieldInvalid('email') || isFieldInvalid('content')) {
+      return true;
+    }
+    if (isSendLoading) {
+      return true;
+    }
+    return false;
+  }
+
   return (
     <>
       <ToastContainer />
@@ -113,11 +126,7 @@ const Contact: NextPage<PageProps> = () => {
             subject={values.subject}
             isInvalidEmail={isFieldInvalid('email')}
             isInvalidContent={isFieldInvalid('content')}
-            isSendDisabled={(
-              isFieldInvalid('email')
-              || isFieldInvalid('content')
-              || isSendLoading
-            )}
+            isSendDisabled={isSendDisabled()}
             isSendLoading={isSendLoading}
             onFieldsBlur={handleBlur}
             onEmailChange={handleChange}
