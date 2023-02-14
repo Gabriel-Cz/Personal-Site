@@ -14,18 +14,39 @@ $inputFont: 24px, 2px, 'Gilroy-Light', 'sans-serif';
   }
 
   .contactFormHeader {
-    font-family: 'Gilroy-ExtraBold';
-    width: 100%;
-    padding-bottom: 35px;
 
-    @media (max-width: 786px) {
-      font-size: 32px;
+    .contactFormTitle {
+      font-family: 'Gilroy-ExtraBold';
+      width: 100%;
+      line-height: 0;
+      padding-bottom: 0px;
+
+      @media (max-width: 786px) {
+        font-size: 32px;
+      }
+    }
+
+    .emailToCopy {
+      font-family: 'Gilroy-Light';
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba($color: #ffff, $alpha: 0.80);
+      letter-spacing: 1px;
+
+      b {
+        letter-spacing: 1px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 
   .contactForm {
     display: flex;
     flex-direction: column;
+    padding-top: 35px;
 
     .fieldsWrapper {
       position: relative;

@@ -55,6 +55,15 @@ const Contact: NextPage<PageProps> = () => {
     });
   }
 
+  const onEmailCopied = () => {
+    toast.info("Email copied to clipboard!", {
+      theme: 'colored',
+      autoClose: 3000,
+      pauseOnHover: true,
+      toastId: 'On Clipboard Toast'
+    });
+  }
+
   const handleSend: React.FormEventHandler<HTMLFormElement> = async (e) => {
     try {
       e.preventDefault();
@@ -78,6 +87,12 @@ const Contact: NextPage<PageProps> = () => {
     } finally {
       if (!isSendLoading) setIsSendLoading(false);
     }
+  }
+
+  const handleEmailClip: React.MouseEventHandler<HTMLElement> = (_e) => {
+    navigator.clipboard.writeText('gabrielczhz@gmail.com');
+    onEmailCopied();
+    return;
   }
 
   const isFieldInvalid = (value: keyof typeof values) => {
@@ -108,6 +123,7 @@ const Contact: NextPage<PageProps> = () => {
             onEmailChange={handleChange}
             onContentChange={handleChange}
             onSubjectChange={handleChange}
+            onEmailCopy={handleEmailClip}
             onSend={handleSend}
           />
         </Content>

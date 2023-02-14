@@ -15,6 +15,7 @@ interface ContactFormProps {
   onContentChange: ChangeEventHandler<HTMLTextAreaElement>;
   onSend: React.FormEventHandler<HTMLFormElement>;
   onFieldsBlur: React.FocusEventHandler;
+  onEmailCopy: React.MouseEventHandler<HTMLElement>;
 }
 export const ContactForm: React.FC<ContactFormProps> = ({
   emailFrom,
@@ -25,6 +26,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   isSendDisabled = true,
   isSendLoading = false,
   onSend,
+  onEmailCopy,
   onEmailChange,
   onSubjectChange,
   onContentChange,
@@ -39,9 +41,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       ) : (
         <img className={styles.imgEnvelope} src='/assets/images/Envelope.png' />
       )}
-      <h1 className={styles.contactFormHeader}>
-        Send Me an Email
-      </h1>
+      <div className={styles.contactFormHeader}>
+        <h1 className={styles.contactFormTitle}>
+          Send Me an Email
+        </h1>
+        <i className={styles.emailToCopy}>
+          Or contact me directly via
+          <b onClick={onEmailCopy}> gabrielczhz@gmail.com</b>
+        </i>
+      </div>
       <form className={styles.contactForm} onSubmit={onSend}>
         <div className={styles.fieldsWrapper}>
           {isInvalidEmail && (
