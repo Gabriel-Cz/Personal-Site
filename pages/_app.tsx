@@ -1,8 +1,10 @@
-import '../styles/globals.css'
+import '@assets/styles/globals.scss'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps, router }: AppProps) {
+  return (
+    <Component {...pageProps} key={router.asPath} />
+  );
 }
 
-export default MyApp
+export default MyApp;

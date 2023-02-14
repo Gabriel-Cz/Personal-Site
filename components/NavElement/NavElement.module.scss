@@ -1,0 +1,35 @@
+.navElement {
+  font-family: 'Gilroy-ExtraBold';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 24px;
+  line-height: 35px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0px 30px;
+
+  @media (max-width: 786px) {
+    font-size: 20px;
+    margin: 0px 18px;
+  }
+
+  @media (max-width: 519px) {
+    font-size: 18px;
+    margin: 0px 10px;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 14px;
+    margin: 0px 10px;
+  }
+  
+  &[data-active=true] {
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &:hover {
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
