@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { Content, Layout } from "../components";
 import { PageProps } from "types";
 import { ContactForm } from "@components";
@@ -8,10 +8,22 @@ import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {}
+  }
+}
+
 const Contact: NextPage<PageProps> = () => {
   const [isSendLoading, setIsSendLoading] = useState<boolean>(false);
-  const [isSendDisabled, setIsSendDisabled] = useState<boolean>(false);
-  const { values, errors, touched, handleChange, handleBlur } = useFormik({
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    resetForm
+  } = useFormik({
     initialValues: {
       email: '',
       subject: '',
@@ -24,36 +36,46 @@ const Contact: NextPage<PageProps> = () => {
       content: Yup.string().required(),
     })
   });
+
+  const onSuccess = () => {
+    toast.success("The email was sent successfully. We'll be in touch in a short.", {
+      theme: 'colored',
+      autoClose: 8000,
+      pauseOnHover: true,
+      toastId: 'On Sucess Toast'
+    });
+  }
+
+  const onError = () => {
+    toast.error("There was an error, try again in a few minutes. You can still reach me out via gabrielczhz@gmail.com", {
+      theme: 'colored',
+      autoClose: 8000,
+      pauseOnHover: true,
+      toastId: 'On Error Toast'
+    });
+  }
+
   const handleSend: React.FormEventHandler<HTMLFormElement> = async (e) => {
     try {
-      setIsSendLoading(true);
-      setIsSendDisabled(true);
       e.preventDefault();
+      setIsSendLoading(true);
       const formattedEmail = values.email.trim().toLowerCase();
-      const payload = {
-        emailFrom: formattedEmail,
-        subject: values.subject,
-        content: values.content,
-      }
-      const res = await fetch('http://localhost:3000/api/aws', {
+      const res = await fetch(`/api/gmail?type=send`, {
         method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-type": "application/json",
-        },
+        body: JSON.stringify({
+          content: values.content,
+          emailFrom: formattedEmail,
+          subject: values.subject,
+        })
       });
-      if (res.status === 500) {
+      if (!res.ok || res.status === 500) {
         throw new Error();
       }
-      toast.success("The email was successfully sent. We'll be in touch shortly.", {
-        theme: 'colored'
-      });
+      onSuccess();
+      resetForm();
     } catch (_error) {
-      toast.error("There was an error while tryng to send the email, try again in a few minutes", {
-        theme: 'colored'
-      });
+      onError();
     } finally {
-      setIsSendDisabled(false);
       if (!isSendLoading) setIsSendLoading(false);
     }
   }
@@ -62,13 +84,6 @@ const Contact: NextPage<PageProps> = () => {
     return (
       typeof errors[value] !== 'undefined'
       && touched[value]
-    )
-  };
-
-  const getIsSendDisabled = (value: keyof typeof values) => {
-    return (
-      typeof errors[value] !== 'undefined'
-      && !touched[value]
     )
   };
 
@@ -84,9 +99,9 @@ const Contact: NextPage<PageProps> = () => {
             isInvalidEmail={isFieldInvalid('email')}
             isInvalidContent={isFieldInvalid('content')}
             isSendDisabled={(
-              isSendDisabled
-              ? true
-              : getIsSendDisabled('email') && getIsSendDisabled('content')
+              isFieldInvalid('email')
+              || isFieldInvalid('content')
+              || isSendLoading
             )}
             isSendLoading={isSendLoading}
             onFieldsBlur={handleBlur}

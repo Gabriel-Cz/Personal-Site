@@ -39,12 +39,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       ) : (
         <img className={styles.imgEnvelope} src='/assets/images/Envelope.png' />
       )}
-      <h1 className={styles.contactFormHeader}>Send Me an Email</h1>
+      <h1 className={styles.contactFormHeader}>
+        Send Me an Email
+      </h1>
       <form className={styles.contactForm} onSubmit={onSend}>
         <div className={styles.fieldsWrapper}>
           {isInvalidEmail && (
             <span className={styles.errorTooltip}>
-              The email is invalid. Try again.
+              Try writing a valid email address.
             </span>
           )}
           <input
@@ -71,8 +73,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <div className={styles.fieldsWrapper}>
           {isInvalidContent && (
             <span className={styles.errorTooltip}>
-              The content of the email cannot be empty. <br />
-              Try writing something.
+              Try writing something. The content of the email cannot be empty.
             </span>
           )}
           <textarea

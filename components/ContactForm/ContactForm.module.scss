@@ -2,6 +2,7 @@ $inputFont: 24px, 2px, 'Gilroy-Light', 'sans-serif';
 
 .contactFormWrapper {
   position: relative;
+  width: 100%;
 
   .imgEnvelope {
     position: absolute;
@@ -16,6 +17,10 @@ $inputFont: 24px, 2px, 'Gilroy-Light', 'sans-serif';
     font-family: 'Gilroy-ExtraBold';
     width: 100%;
     padding-bottom: 35px;
+
+    @media (max-width: 786px) {
+      font-size: 32px;
+    }
   }
 
   .contactForm {

@@ -1,8 +1,8 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { Content, Text, Button, Layout } from "@components";
 import { PageProps } from "@types";
 
-export const getServerSideProps = async () => {
+export const getStaticProps: GetServerSideProps = async () => {
   const res = await fetch(`${process.env.REACT_URL}/api/aws?pageName=Experience`, {
     method: 'GET',
     headers: {
@@ -12,17 +12,16 @@ export const getServerSideProps = async () => {
   const { data } = await res.json();
   return {
     props: {
-      content: data.Item.Content
+      content: data.Item.Content ?? ''
     }
   }
 }
 
 const About: NextPage<PageProps> = ({ content }) => {
-  console.log('About')
   return (
     <Layout>
       <Content>
-        <Text>
+        <Text shadow>
           {content}
         </Text>
         <Button to="/contact" variant="secondary" style={{ marginTop: 50 }}>

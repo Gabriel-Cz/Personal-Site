@@ -8,7 +8,7 @@ interface TechProps {
 const Techs: React.FC<TechProps> = ({ description }) => {
   return (
     <section>
-      <Text style={{ marginTop: '50px' }}>
+      <Text shadow>
         {description}
       </Text>
       <div style={{ marginTop: 60 }}>

@@ -15,6 +15,10 @@
   text-transform: uppercase;
   transition: all ease-in-out 0.25s;
 
+  @media (max-width: 700px) {
+    font-size: 14px;
+  }
+
   &:hover {
     cursor: url('/assets/custom-cursor/CustomPointer.png'), auto;
   }
@@ -25,6 +29,7 @@
 
   &[data-variant=secondary] {
     background: #9D50BB;
+    letter-spacing: 2px;
     background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);
     background: linear-gradient(to right, #6E48AA, #9D50BB);
   }

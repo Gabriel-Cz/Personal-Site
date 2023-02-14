@@ -21,11 +21,13 @@ export default async function handler(
       const page = await awsService.getPage(pageName);
       res.status(200).send({ data: page });
     } catch (error: any) {
+      console.log(error)
       res.status(500).send({
         error: { message: error.message }
       });
     }
   }
+
   if (req.method === 'POST') {
     try {
       const emailSent = await awsService.sendEmail(req.body);
