@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import styles from './Text.module.scss';
 
 interface TextProps extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
@@ -33,6 +34,7 @@ const Text: React.FC<TextProps> = ({
   const TAG = heading;
   return (
     <TAG
+      className={styles.text}
       style={{
         fontSize,
         fontWeight,
