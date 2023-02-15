@@ -1,9 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { db, ses } from '@utils/aws.config';
+import { db } from '@utils/aws.config';
 import AWSService from '@services/aws.service';
-import { ApiResponse } from 'types';
+import type { ApiResponse } from 'types';
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-const awsService = new AWSService(db, ses);
+const awsService = new AWSService(db);
 
 export default async function handler(
   req: NextApiRequest,
@@ -21,19 +21,6 @@ export default async function handler(
       const page = await awsService.getPage(pageName);
       res.status(200).send({ data: page });
     } catch (error: any) {
-      console.log(error)
-      res.status(500).send({
-        error: { message: error.message }
-      });
-    }
-  }
-
-  if (req.method === 'POST') {
-    try {
-      const emailSent = await awsService.sendEmail(req.body);
-      res.status(200).send({ data: emailSent });
-    } catch (error: any) {
-      console.log(error);
       res.status(500).send({
         error: { message: error.message }
       });

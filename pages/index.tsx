@@ -1,6 +1,6 @@
-import { Layout } from 'components';
-import type { NextPage } from 'next'
 import { useEffect } from 'react'
+import { Layout } from '@components';
+import type { NextPage } from 'next'
 
 const Index: NextPage = () => {
   useEffect(() => {

@@ -7,6 +7,5 @@ AWS.config.update({
 });
 
 const db = new AWS.DynamoDB.DocumentClient({ apiVersion: 'latest' });
-const ses = new AWS.SES({ apiVersion: 'latest' });
 
-export { db, ses };
+export { db };

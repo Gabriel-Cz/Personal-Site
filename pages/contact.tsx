@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { GetServerSideProps, NextPage } from "next";
-import { Content, Layout } from "../components";
-import { PageProps } from "types";
-import { ContactForm } from "@components";
+import { ContactForm, Content, Layout } from "@components";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
+import type { GetServerSideProps, NextPage } from "next";
+import type { PageProps } from "@types";
 import 'react-toastify/dist/ReactToastify.css';
 
 export const getServerSideProps: GetServerSideProps = async () => {

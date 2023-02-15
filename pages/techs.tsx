@@ -1,18 +1,13 @@
-import { GetStaticProps, NextPage } from "next";
-import { Content, Techs, Button, Layout, Text } from "@components";
-import { PageProps } from "@types";
+import { Content, Techs, Button, Layout } from "@components";
+import api from "@services/api.service";
+import type { GetServerSideProps, NextPage } from "next";
+import type { PageProps } from "@types";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`${process.env.REACT_URL}/api/aws?pageName=Techs`, {
-    method: 'GET',
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-  const { data } = await res.json();
+export const getServerSideProps: GetServerSideProps = async () => {
+  const page = await api.getPage('Techs');
   return {
     props: {
-      content: data.Item.Content ?? ''
+      content: page.Item?.Content ?? ''
     }
   }
 }
