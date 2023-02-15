@@ -1,0 +1,9 @@
+@import '@assets/styles/variables';
+
+.text {
+  
+  @media (max-width: 519px) {
+    font: $content-text-mb;
+    text-align: center;
+  }
+}
