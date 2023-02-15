@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { db } from '@utils/aws.config';
 import AWSService from '@services/aws.service';
-import { ApiResponse } from 'types';
+import type { ApiResponse } from 'types';
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const awsService = new AWSService(db);
 

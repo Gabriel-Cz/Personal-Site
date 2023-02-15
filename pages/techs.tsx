@@ -1,7 +1,7 @@
-import { GetStaticProps, NextPage } from "next";
 import { Content, Techs, Button, Layout } from "@components";
-import { PageProps } from "@types";
 import api from "@services/api.service";
+import type { GetStaticProps, NextPage } from "next";
+import type { PageProps } from "@types";
 
 export const getStaticProps: GetStaticProps = async () => {
   const page = await api.getPage('Techs');

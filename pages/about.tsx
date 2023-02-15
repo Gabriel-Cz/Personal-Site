@@ -1,9 +1,9 @@
-import { GetServerSideProps, NextPage } from "next";
 import { Content, Text, Button, Layout } from "@components";
 import api from "@services/api.service";
-import { PageProps } from "@types";
+import type { PageProps } from "@types";
+import type { GetStaticProps, NextPage } from "next"
 
-export const getStaticProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const page = await api.getPage('Experience');
   return {
     props: {
